@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPharm Solutions | Santé et Pharmaceutique</title>
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --tertiary-color: #7c4dff;
+            --light-color: #f8f9fa;
+            --dark-color: #202124;
+            --grey-color: #5f6368;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0d5bbc;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: #2d9249;
+        }
+
+        .btn-tertiary {
+            background: var(--tertiary-color);
+        }
+
+        .btn-tertiary:hover {
+            background: #6a3ad6;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(26, 115, 232, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--grey-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        /* Services Section */
+        .services {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--grey-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: var(--spacing-md);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-card p {
+            color: var(--grey-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-card a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .service-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Secteurs d'activité */
+        .sectors {
+            padding: var(--spacing-lg) 0;
+            background-color: #f0f4f8;
+        }
+
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .sector-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .sector-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sector-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .sector-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .sector-card:hover .sector-img img {
+            transform: scale(1.05);
+        }
+
+        .sector-content {
+            padding: var(--spacing-md);
+        }
+
+        .sector-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sector-content p {
+            color: var(--grey-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Pourquoi nous choisir */
+        .features {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(52, 168, 83, 0.1);
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-sm);
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-item p {
+            color: var(--grey-color);
+        }
+
+        /* Témoignages */
+        .testimonials {
+            padding: var(--spacing-lg) 0;
+            background-color: #f0f4f8;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+            color: var(--grey-color);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--grey-color);
+            font-size: 0.9rem;
+        }
+
+        /* Call-to-Action */
+        .cta {
+            padding: var(--spacing-lg) 0;
+            background: linear-gradient(135deg, #1a73e8 0%, #7c4dff 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-md);
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .cta .btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: var(--spacing-lg) 0 var(--spacing-sm);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+            color: white;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                justify-content: center;
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav, .header-actions {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Medi<span>Pharm</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Secteurs</a></li>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn">Nous contacter</a>
+            </div>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Solutions innovantes pour la santé et la pharmaceutique</h1>
+                <p>Nous offrons des services complets et des solutions avancées pour répondre aux défis des secteurs de la santé et de la pharmaceutique.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn">Nos services</a>
+                    <a href="#" class="btn btn-secondary">Nous contacter</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/600/400" alt="Innovation en santé">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p>Des solutions adaptées à tous vos besoins dans le secteur de la santé et pharmaceutique</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">R</div>
+                    <h3>Recherche & Développement</h3>
+                    <p>Support scientifique et technique pour vos projets de recherche et développement dans le secteur pharmaceutique.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">P</div>
+                    <h3>Production & Fabrication</h3>
+                    <p>Optimisation des processus de production et fabrication de produits pharmaceutiques conformes aux normes.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">Q</div>
+                    <h3>Contrôle Qualité</h3>
+                    <p>Analyses et contrôles rigoureux pour garantir la qualité et la conformité de vos produits.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">C</div>
+                    <h3>Conseil Réglementaire</h3>
+                    <p>Accompagnement dans vos démarches réglementaires et conformité aux exigences légales.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">F</div>
+                    <h3>Formation</h3>
+                    <p>Programmes de formation adaptés aux professionnels de la santé et de l'industrie pharmaceutique.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">D</div>
+                    <h3>Distribution & Logistique</h3>
+                    <p>Solutions logistiques optimisées pour la distribution de produits pharmaceutiques et médicaux.</p>
+                    <a href="#">En savoir plus →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secteurs d'activité -->
+    <section class="sectors">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Secteurs d'Activité</h2>
+                <p>Une expertise diversifiée pour répondre à tous les besoins du secteur de la santé</p>
+            </div>
+            <div class="sectors-grid">
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="Industrie Pharmaceutique">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Industrie Pharmaceutique</h3>
+                        <p>Solutions complètes pour la recherche, développement, production et distribution de médicaments.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="Biotechnologie">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Biotechnologie</h3>
+                        <p>Support aux entreprises de biotechnologie dans leurs innovations et développements techniques.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="Dispositifs Médicaux">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Dispositifs Médicaux</h3>
+                        <p>Expertise dans la conception, fabrication et certification des dispositifs médicaux.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="Établissements de Santé">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Établissements de Santé</h3>
+                        <p>Services dédiés aux hôpitaux, cliniques et centres de soins pour optimiser leurs activités.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="Recherche Clinique">
+                    </div>
+                    <div class="sector-content">
+                        <h3>Recherche Clinique</h3>
+                        <p>Accompagnement des essais cliniques et études pour le développement de nouvelles thérapies.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-img">
+                        <img src="/api/placeholder/400/300" alt="E-Santé">
+                    </div>
+                    <div class="sector-content">
+                        <h3>E-Santé & Télémédecine</h3>
+                        <p>Solutions numériques innovantes pour la santé connectée et les services de télémédecine.</p>
+                        <a href="#">Découvrir →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pourquoi nous choisir ?</h2>
+                <p>Des atouts qui font la différence pour votre entreprise</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">E</div>
+                    <h3>Expertise</h3>
+                    <p>Une équipe d'experts qualifiés dans tous les domaines de la santé et de la pharmaceutique.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">I</div>
+                    <h3>Innovation</h3>
+                    <p>Des solutions à la pointe de la technologie pour répondre aux défis actuels et futurs.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">Q</div>
+                    <h3>Qualité</h3>
+                    <p>Un engagement constant pour la qualité et l'excellence dans tous nos services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ce que disent nos clients</h2>
+                <p>Découvrez les témoignages de nos clients satisfaits</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"L'expertise de MediPharm a été déterminante dans le succès de notre projet de recherche pharmaceutique. Une équipe professionnelle et à l'écoute."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/100/100" alt="Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Dr. Sophie Martin</h4>
+                            <p>Directrice R&D, Pharma Plus</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Grâce aux solutions logistiques de MediPharm, nous avons pu optimiser notre chaîne d'approvisionnement et réduire nos coûts de distribution de 30%."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/100/100" alt="Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jean Dupont</h4>
+                            <p>Directeur Logistique, MediCenter</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Un partenaire fiable et innovant qui nous a permis de développer notre gamme de dispositifs médicaux en respectant toutes les normes réglementaires."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/100/100" alt="Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Marie Leclerc</h4>
+                            <p>PDG, InnoMed Technologies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Prêt à transformer votre activité ?</h2>
+            <p>Contactez-nous dès aujourd'hui pour discuter de vos projets et découvrir comment nos solutions peuvent vous aider à atteindre vos objectifs.</p>
+            <a href="#" class="btn">Demander un devis gratuit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>MediPharm</h3>
+                    <p>Solutions innovantes pour la santé et la pharmaceutique. Expertise, innovation et qualité au service de votre entreprise.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">F</a>
+                        <a href="#" class="social-icon">T</a>
+                        <a href="#" class="social-icon">L</a>
+                        <a href="#" class="social-icon">I</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Recherche & Développement</a></li>
+                        <li><a href="#">Production & Fabrication</a></li>
+                        <li><a href="#">Contrôle Qualité</a></li>
+                        <li><a href="#">Conseil Réglementaire</a></li>
+                        <li><a href="#">Formation</a></li>
+                        <li><a href="#">Distribution & Logistique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Secteurs</h3>
+                    <ul>
+                        <li><a href="#">Industrie Pharmaceutique</a></li>
+                        <li><a href="#">Biotechnologie</a></li>
+                        <li><a href="#">Dispositifs Médicaux</a></li>
+                        <li><a href="#">Établissements de Santé</a></li>
+                        <li><a href="#">Recherche Clinique</a></li>
+                        <li><a href="#">E-Santé & Télémédecine</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>123 Avenue de la Santé</li>
+                        <li>75000 Paris, France</li>
+                        <li>info@medipharm.com</li>
+                        <li>+33 1 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MediPharm Solutions. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour menu mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            // Code pour afficher/masquer le menu mobile
+            alert('Menu mobile en cours de développement');
+        });
+    </script>
+</body>
+</html>
